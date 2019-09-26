@@ -497,7 +497,10 @@ export class URScriptFormattingProvider
    * @param line 欲檢查的文字行
    */
   private needIncreaseIndent(line: TextLine): boolean {
-    const match = line.text.match(/\b(def|thread|while|for|if|elif|else).*:/g);
+    const match = line.text.match(
+      /\b(def|thread|while|for|if|elif|else).*:|\b\w+\((?!.*\))/g
+    );
+    console.log({ match, line });
     return match ? match.length > 0 : false;
   }
 
@@ -506,7 +509,9 @@ export class URScriptFormattingProvider
    * @param line 欲檢查的文字行
    */
   private needDecreaseIndent(line: TextLine): boolean {
-    const match = line.text.match(/\b(end)|(elif.*:)|(else:)/g);
+    const match = line.text.match(
+      /\b(?<!\w)end(?!\w)|(elif.*:)|(else:)|(?<!(\(.*))\)/g
+    );
     return match ? match.length > 0 : false;
   }
 
