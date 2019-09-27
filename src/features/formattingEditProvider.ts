@@ -185,7 +185,8 @@ export class URScriptFormattingProvider
     new SignPattern("=", [
       new SignIncludeString(IncludePosition.Both, "="), // ==
       new SignIncludeString(IncludePosition.Both, ">"), // >=, =>
-      new SignIncludeString(IncludePosition.Both, "<") // <=, =<
+      new SignIncludeString(IncludePosition.Both, "<"), // <=, =<
+      new SignIncludeString(IncludePosition.Before, "!") // !=
     ]),
     new SignPattern(">", [
       new SignIncludeString(IncludePosition.Both, ">"), // >>
@@ -200,6 +201,7 @@ export class URScriptFormattingProvider
     ]),
     new SignPattern("-", [
       new SignIncludeString(IncludePosition.Both, "-", FormatAction.Ignore), //--
+      new SignIncludeString(IncludePosition.Both, '"', FormatAction.Ignore), //"-"
       new SignIncludeRegex(IncludePosition.After, /-\d+/, FormatAction.Ignore) //-123
     ]),
     new SignPattern("*", []),
