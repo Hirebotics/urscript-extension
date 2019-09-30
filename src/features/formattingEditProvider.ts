@@ -208,7 +208,9 @@ export class URScriptFormattingProvider
     ]),
     new SignPattern("*", []),
     new SignPattern("/", [
-      new SignIncludeRegex(IncludePosition.After, /\/\w+/, FormatAction.Ignore) // http://192
+      new SignIncludeRegex(IncludePosition.Both, /\//, FormatAction.Ignore), // //
+      new SignIncludeRegex(IncludePosition.Before, /\//, FormatAction.Ignore), // :/
+      // new SignIncludeRegex(IncludePosition.After, /\/\w+/, FormatAction.Ignore) // http://192
     ])
   ];
 
