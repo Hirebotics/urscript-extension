@@ -171,7 +171,7 @@ class IncludeResult {
  */
 export class URScriptFormattingProvider
   implements DocumentRangeFormattingEditProvider {
-  
+
   /** 用於取得合法逗號的 Regex */
   private CommaPattern = /,(?=([^\"]*\"[^\"]*\")*[^\"]*$)/g;
 
@@ -203,13 +203,16 @@ export class URScriptFormattingProvider
     new SignPattern("-", [
       new SignIncludeString(IncludePosition.Both, "-", FormatAction.Ignore), //--
       new SignIncludeString(IncludePosition.Both, '"', FormatAction.Ignore), //"-"
-      new SignIncludeRegex(IncludePosition.After, /-\d+/, FormatAction.Ignore) //-123
+      new SignIncludeRegex(IncludePosition.After, /-\d+/, FormatAction.Ignore), //-123
+      new SignIncludeRegex(IncludePosition.After, /-\w+/, FormatAction.Ignore), //-ABC, -abc
     ]),
     new SignPattern("*", []),
     new SignPattern("/", [
       new SignIncludeRegex(IncludePosition.After, /\/\w+/, FormatAction.Ignore) // http://192
     ])
   ];
+
+
 
   /**
    * 搜尋括弧並在內容分隔補上空白
